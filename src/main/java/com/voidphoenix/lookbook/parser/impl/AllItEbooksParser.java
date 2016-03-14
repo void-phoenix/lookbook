@@ -29,8 +29,8 @@ public class AllItEbooksParser implements Parser {
                 if (element.hasText() && element.hasAttr(REL) && element.attr(REL).equals(BOOK_SIGN)) {
                     final String link = element.attr(TAG_HREF);
                     final String title = element.text();
-                    //check are books equals
-                    return !(wasLastBookLastTime.getTitle().equals(title) && wasLastBookLastTime.getLink().equals(link));
+                    final Book lastBook = new Book(title, link, URL);
+                    return !wasLastBookLastTime.equals(lastBook);
                 }
             }
         } catch (IOException ex) {

@@ -57,7 +57,7 @@ public class ParsingTask{
             final List<Book> books = parser.getNewOnly(lastBook);
             newBooks.put(parser.getUrl(), books);
             if (books.size() > 0) {
-                lastBooksService.setLastBook(parser.getLast());
+                lastBooksService.setLastBook(books.get(0));
             }
         });
         return newBooks;
