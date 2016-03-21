@@ -1,5 +1,8 @@
 package com.voidphoenix.lookbook.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Book {
 
     private String title;
@@ -47,6 +50,17 @@ public class Book {
     public boolean equals(Object obj) {
         if (!(obj instanceof Book)) return false;
         Book that = (Book) obj;
-        return this.title.equals(that.title) && this.link.equals(that.link);
+        return new EqualsBuilder()
+                .append(title, that.title)
+                .append(link, that.link)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(title)
+                .append(link)
+                .toHashCode();
     }
 }
